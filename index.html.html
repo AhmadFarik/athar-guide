@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مجموعة أثر - الدليل الإرشادي للمعلم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--gold:#f5a623;--gold-light:#fde68a;--teal:#0f766e;--teal-light:#5eead4;--rose:#e11d48;--purple:#7c3aed;--blue:#1d4ed8;--green:#15803d;--dark:#1e1b4b;--text:#1e293b;--muted:#64748b;--bg:#f8faff;--card:#ffffff;--radius:20px;--shadow:0 8px 32px rgba(30,27,75,.10);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Cairo','Tajawal',sans-serif;background:var(--bg);color:var(--text);direction:rtl;}
+    .nav-tabs{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 16px rgba(30,27,75,.10);display:flex;justify-content:center;overflow-x:auto;}
+    .nav-tab{padding:15px 22px;font-size:.88rem;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Cairo',sans-serif;white-space:nowrap;transition:all .2s;}
+    .nav-tab:hover{color:var(--dark);}
+    .nav-tab.active{color:var(--dark);border-bottom-color:var(--gold);}
+    .page{display:none;} .page.active{display:block;}
+    .container{max-width:960px;margin:0 auto;padding:0 20px;}
+    .section{padding:44px 0 20px;}
+    .section-title{font-family:'Tajawal',sans-serif;font-size:1.55rem;font-weight:800;color:var(--dark);margin-bottom:6px;display:flex;align-items:center;gap:12px;}
+    .section-title .dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+    .section-desc{color:var(--muted);font-size:.91rem;margin-bottom:22px;padding-right:24px;}
+    .divider{height:2px;background:linear-gradient(90deg,transparent,var(--teal-light),transparent);margin:6px 0 36px;border:none;}
+
+    /* COVER */
+    .cover{min-height:100vh;background:linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#0f766e 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;position:relative;overflow:hidden;}
+    .cover::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E");}
+    .cover-content{position:relative;z-index:1;}
+    .cover-logo{width:90px;height:90px;background:rgba(245,166,35,.2);border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 28px;}
+    .cover h1{font-family:'Tajawal',sans-serif;font-size:clamp(3rem,10vw,5.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:12px;}
+    .cover h1 span{background:linear-gradient(90deg,var(--gold),#fde68a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .cover-sub{color:#c7d2fe;font-size:1rem;max-width:500px;margin:0 auto 36px;line-height:1.8;}
+    .byline-card{background:rgba(255,255,255,.07);border:1.5px solid rgba(245,166,35,.4);border-radius:16px;padding:22px 44px;display:inline-flex;flex-direction:column;gap:10px;text-align:right;margin-bottom:36px;}
+    .byline-row{display:flex;align-items:center;gap:10px;}
+    .byline-label{color:var(--gold-light);font-size:.85rem;font-weight:700;white-space:nowrap;}
+    .byline-value{color:#fff;font-size:1rem;font-weight:800;}
+    .byline-divider{height:1px;background:rgba(245,166,35,.2);}
+    .cover-deadline{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--rose),#be123c);color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;font-size:1rem;box-shadow:0 8px 24px rgba(225,29,72,.4);animation:pulse 2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+    /* CARDS */
+    .tasks-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    @media(max-width:640px){.tasks-grid{grid-template-columns:1fr;}}
+    .task-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;border:2px solid transparent;transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden;}
+    .task-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;border-radius:0 var(--radius) 0 80px;opacity:.12;}
+    .task-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(30,27,75,.15);}
+    .task-card.gold{border-color:var(--gold);} .task-card.gold::before{background:var(--gold);}
+    .task-card.teal{border-color:var(--teal);} .task-card.teal::before{background:var(--teal);}
+    .task-num{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:14px;}
+    .task-card.gold .task-num{background:linear-gradient(135deg,var(--gold),#f97316);}
+    .task-card.teal .task-num{background:linear-gradient(135deg,var(--teal),#0891b2);}
+    .task-card h3{font-size:1.08rem;font-weight:800;color:var(--dark);margin-bottom:8px;}
+    .task-card p{color:var(--muted);font-size:.87rem;line-height:1.8;}
+    .task-tag{display:inline-block;font-size:.74rem;font-weight:700;padding:3px 12px;border-radius:50px;margin-top:12px;}
+    .task-card.gold .task-tag{background:#fef9c3;color:#92400e;}
+    .task-card.teal .task-tag{background:#ccfbf1;color:#134e4a;}
+    .new-badge{background:var(--rose);color:#fff;font-size:.7rem;font-weight:700;padding:2px 10px;border-radius:50px;margin-left:6px;vertical-align:middle;display:inline-block;}
+
+    /* ALERTS */
+    .alert-banner{background:linear-gradient(135deg,#fef9c3,#fde68a);border:2px solid var(--gold);border-radius:var(--radius);padding:16px 22px;display:flex;align-items:center;gap:14px;margin:14px 0 24px;}
+    .alert-banner p{color:#78350f;font-size:.91rem;font-weight:600;line-height:1.7;}
+    .alert-warning{background:linear-gradient(135deg,#fff1f2,#fecdd3);border:2px solid var(--rose);border-radius:var(--radius);padding:16px 22px;display:flex;align-items:center;gap:14px;margin:0 0 24px;}
+    .alert-warning p{color:#9f1239;font-size:.91rem;font-weight:700;line-height:1.7;}
+
+    /* LEVELS */
+    .levels-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px;}
+    @media(max-width:640px){.levels-row{grid-template-columns:1fr;}}
+    .level-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 18px;text-align:center;border-top:5px solid transparent;transition:transform .25s;}
+    .level-card:hover{transform:translateY(-4px);}
+    .level-card.beginner{border-top-color:var(--green);}
+    .level-card.intermediate{border-top-color:var(--gold);}
+    .level-card.expert{border-top-color:var(--purple);}
+    .level-stars{font-size:1.4rem;margin-bottom:8px;}
+    .level-name{font-weight:800;font-size:.95rem;color:var(--dark);margin-bottom:6px;}
+    .level-count{font-size:2.4rem;font-weight:900;line-height:1;margin-bottom:4px;}
+    .level-card.beginner .level-count{color:var(--green);}
+    .level-card.intermediate .level-count{color:var(--gold);}
+    .level-card.expert .level-count{color:var(--purple);}
+    .level-label{font-size:.78rem;color:var(--muted);font-weight:500;}
+    .evidence-icons{display:flex;justify-content:center;gap:6px;margin:8px 0 0;}
+    .evidence-icon{width:34px;height:34px;background:#f1f5f9;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;}
+
+    /* INSTRUCTIONS */
+    .instructions-card{background:linear-gradient(135deg,#1e1b4b,#312e81);border-radius:var(--radius);padding:30px;color:#fff;margin-bottom:24px;}
+    .instructions-card h3{font-size:1.05rem;font-weight:800;color:var(--gold-light);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+    .instruction-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.08);}
+    .instruction-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+    .check-icon{width:28px;height:28px;background:linear-gradient(135deg,var(--teal),#0891b2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem;margin-top:2px;color:#fff;}
+    .instruction-item p{color:#e0e7ff;font-size:.89rem;line-height:1.8;}
+
+    /* INFO BOXES */
+    .info-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;}
+    @media(max-width:600px){.info-row{grid-template-columns:1fr;}}
+    .info-box{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border-right:5px solid transparent;}
+    .info-box.purple{border-right-color:var(--purple);}
+    .info-box.rose{border-right-color:var(--rose);}
+    .info-box h4{font-size:.91rem;font-weight:800;color:var(--dark);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+    .info-box p{color:var(--muted);font-size:.85rem;line-height:1.8;}
+
+    /* EVIDENCE */
+    .evidence-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+    @media(max-width:600px){.evidence-grid{grid-template-columns:1fr;}}
+    .evidence-item{background:var(--card);border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(30,27,75,.07);border:1.5px solid #f1f5f9;transition:border-color .2s,transform .2s;}
+    .evidence-item:hover{border-color:var(--teal-light);transform:translateX(-3px);}
+    .evidence-emoji{font-size:1.25rem;flex-shrink:0;}
+    .evidence-text{font-size:.86rem;font-weight:600;color:var(--text);}
+
+    /* TABLE */
+    .std-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-bottom:22px;}
+    .std-table th{background:linear-gradient(135deg,#1e1b4b,#312e81);color:#fff;padding:11px 13px;text-align:right;font-weight:700;font-size:.81rem;}
+    .std-table td{padding:10px 13px;border-bottom:1px solid #e2e8f0;vertical-align:top;line-height:1.7;}
+    .std-table tr:nth-child(even) td{background:#f8faff;}
+    .std-table tr:hover td{background:#f0f9ff;}
+    .std-header{background:linear-gradient(135deg,#0f766e,#1d4ed8);color:#fff;border-radius:14px;padding:16px 22px;font-size:1rem;font-weight:800;margin:28px 0 14px;display:flex;align-items:center;gap:12px;}
+
+    /* IMPORTANCE */
+    .importance-card{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #0891b2;border-radius:var(--radius);padding:26px;margin-bottom:26px;}
+    .importance-card h3{color:#0e7490;font-size:.98rem;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+    .importance-card p{color:#164e63;font-size:.89rem;line-height:1.9;}
+
+    /* FORM */
+    .form-section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px;}
+    .form-section-header{background:linear-gradient(135deg,#312e81,#1e1b4b);color:#fff;padding:15px 22px;font-size:.91rem;font-weight:800;}
+    .form-section-body{padding:18px 22px;}
+    .form-field{margin-bottom:14px;}
+    .form-field label{display:block;font-size:.8rem;font-weight:700;color:var(--dark);margin-bottom:6px;}
+    .form-field textarea{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:11px 13px;font-family:'Cairo',sans-serif;font-size:.86rem;color:var(--text);resize:vertical;min-height:78px;transition:border-color .2s;}
+    .form-field textarea:focus{outline:none;border-color:var(--teal);}
+    .progress-radio{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;}
+    .radio-btn{display:flex;align-items:center;gap:6px;}
+    .radio-btn input{accent-color:var(--teal);width:16px;height:16px;}
+    .radio-btn label{font-size:.84rem;font-weight:600;cursor:pointer;}
+    .radio-slow{color:#b91c1c;} .radio-steady{color:#c2410c;} .radio-good{color:#15803d;} .radio-excel{color:#1d4ed8;}
+
+    /* CHECKLIST */
+    .checklist-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:22px;}
+    .checklist-card h3{font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+    .checklist-item{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid #f1f5f9;}
+    .checklist-item:last-child{border-bottom:none;}
+    .checklist-item input[type=checkbox]{width:20px;height:20px;accent-color:var(--teal);cursor:pointer;flex-shrink:0;}
+    .checklist-item label{font-size:.89rem;font-weight:600;color:var(--text);cursor:pointer;flex:1;}
+    .checklist-item.done label{text-decoration:line-through;color:var(--muted);}
+
+    /* FOOTER */
+    .footer-cta{background:linear-gradient(135deg,#0f766e 0%,#1d4ed8 100%);border-radius:var(--radius);padding:38px 34px;text-align:center;color:#fff;margin:28px 0 44px;box-shadow:0 12px 40px rgba(15,118,110,.3);}
+    .footer-cta h2{font-family:'Tajawal',sans-serif;font-size:1.65rem;font-weight:900;margin-bottom:12px;}
+    .footer-cta p{color:#a7f3d0;font-size:.91rem;line-height:1.8;max-width:580px;margin:0 auto;}
+  </style>
+</head>
+<body>
+
+<nav class="nav-tabs">
+  <button class="nav-tab active" onclick="showPage('cover')">🏠 الرئيسية</button>
+  <button class="nav-tab" onclick="showPage('guide')">📋 دليل المهمة</button>
+  <button class="nav-tab" onclick="showPage('tool')">📊 أداة التقييم</button>
+  <button class="nav-tab" onclick="showPage('form')">📝 نموذج الجلسة</button>
+  <button class="nav-tab" onclick="showPage('checklist')">✅ قائمة التحقق</button>
+</nav>
+
+<!-- COVER -->
+<div id="cover" class="page active">
+  <div class="cover">
+    <div class="cover-content">
+      <div class="cover-logo">🌟</div>
+      <h1>مجموعة <span>أثر</span></h1>
+      <p class="cover-sub">الدليل الإرشادي الشامل لأداة تقييم التطور المهني ونموذج الجلسة الإرشادية</p>
+      <div class="byline-card">
+        <div class="byline-row">
+          <span class="byline-label">إعداد المعلم :</span>
+          <span class="byline-value">أحمد فضيل مشرف فرخ</span>
+        </div>
+        <div class="byline-divider"></div>
+        <div class="byline-row">
+          <span class="byline-label">إشراف الدكتور :</span>
+          <span class="byline-value">أحمد العساف</span>
+        </div>
+      </div>
+      <div class="cover-deadline">📅 آخر موعد للتسليم: السبت <strong style="margin-right:6px">6 يونيو 2026</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- GUIDE -->
+<div id="guide" class="page">
+<div class="container">
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--blue)"></span>أهمية الأداة</div>
+  <div class="importance-card">
+    <h3>💡 لماذا هذه الأداة مهمة؟</h3>
+    <p>تأتي أهمية أداة تقييم التطور المهني في كونها تمنح المعلمين فرصة لمراجعة أدائهم بشكل شامل وذاتي، وتحديد نقاط القوة وجوانب التحسين بشكل مستمر؛ مما يعزز من قدرتهم على تحقيق أهداف التعلم والتعليم بكفاءة وفعالية. وتُعدّ هذه الأداة مرجعاً لكل من الصديق الناقد والمرشد الأكاديمي في تقييم تطورك.</p>
+  </div>
+
+  <div class="section-title"><span class="dot" style="background:var(--gold)"></span>المهام المطلوبة</div>
+  <p class="section-desc">يتضمن النشاط مهمتين أساسيتين يجب تسليمهما قبل الموعد المحدد</p>
+  <div class="tasks-grid">
+    <div class="task-card gold">
+      <div class="task-num">١</div>
+      <h3>أداة تقييم التطور المهني</h3>
+      <p>استكمال أداة تقييم التطور المهني وفق المعايير المحددة، مع إرفاق الأدلة الداعمة لكل معيار عبر روابط تشعبية.</p>
+      <span class="task-tag">📋 متوفرة داخل المهمة</span>
+    </div>
+    <div class="task-card teal">
+      <div class="task-num">٢</div>
+      <h3>نموذج الجلسة الإرشادية<span class="new-badge">جديد</span></h3>
+      <p>تعبئة نموذج الجلسة الإرشادية الجديد وإرفاقه مع الأدلة اللازمة ضمن المهمة الإلكترونية.</p>
+      <span class="task-tag">📝 النموذج الجديد</span>
+    </div>
+  </div>
+  <div class="alert-banner">
+    <span style="font-size:1.6rem">📌</span>
+    <p>ملاحظة: الأداة والنموذج متوفران <strong>داخل المهمة نفسها</strong> — لا حاجة للبحث عنهما في مكان آخر.</p>
+  </div>
+  <div class="alert-warning">
+    <span style="font-size:1.6rem">🔴</span>
+    <p>المطلوب في هذه المهمة هو <strong>الخبرة المدرسية الأولى فقط</strong> — يرجى التأكد من تعبئة حقول الخبرة الأولى دون غيرها في الوقت الراهن.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" style="padding-top:0">
+  <div class="section-title"><span class="dot" style="background:var(--purple)"></span>عدد الأدلة حسب المستوى</div>
+  <div class="levels-row">
+    <div class="level-card beginner">
+      <div class="level-stars">⭐</div>
+      <div class="level-name">المستوى المبتدئ</div>
+      <div class="level-count">١</div>
+      <div class="level-label">دليل واحد لكل معيار</div>
+      <div class="evidence-icons"><div class="evidence-icon">📄</div></div>
+    </div>
+    <div class="level-card intermediate">
+      <div class="level-stars">⭐⭐</div>
+      <div class="level-name">المستوى المتمكن</div>
+      <div class="level-count">٢</div>
+      <div class="level-label">دليلان لكل معيار</div>
+      <div class="evidence-icons"><div class="evidence-icon">📄</div><div class="evidence-icon">📄</div></div>
+    </div>
+    <div class="level-card expert">
+      <div class="level-stars">⭐⭐⭐</div>
+      <div class="level-name">المستوى الخبير</div>
+      <div class="level-count">٣</div>
+      <div class="level-label">ثلاثة أدلة لكل معيار</div>
+      <div class="evidence-icons"><div class="evidence-icon">📄</div><div class="evidence-icon">📄</div><div class="evidence-icon">📄</div></div>
+    </div>
+  </div>
+  <div class="info-row">
+    <div class="info-box purple"><h4>🔄 دليل لأكثر من معيار</h4><p>يمكن استخدام نفس الدليل لأكثر من معيار عند ارتباطه بالمعايير المطلوبة، على ألا يتجاوز استخدامه ثلاثة معايير كحد أقصى.</p></div>
+    <div class="info-box rose"><h4>🎯 الدليل ليس محدداً بنوع</h4><p>الدليل ليس محصوراً بنوع بعينه، المهم أن يكون مرتبطاً بالمعيار ويُظهر تحقق مؤشرات الأداء بشكل واضح.</p></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" style="padding-top:0">
+  <div class="section-title"><span class="dot" style="background:var(--rose)"></span>أمثلة على الأدلة الممكنة</div>
+  <div class="evidence-grid">
+    <div class="evidence-item"><span class="evidence-emoji">📚</span><span class="evidence-text">خطط الدروس</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">📋</span><span class="evidence-text">أوراق العمل</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">📝</span><span class="evidence-text">المهمات والأنشطة الصفية</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">👨‍🎓</span><span class="evidence-text">أعمال الطلبة ومنتجات تعلمهم</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">📊</span><span class="evidence-text">أدوات التقييم والاختبارات</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">📸</span><span class="evidence-text">الصور والتوثيقات المختلفة</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">🎥</span><span class="evidence-text">التسجيلات أو العروض التقديمية</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">💬</span><span class="evidence-text">التغذية الراجعة المقدمة للطلبة</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">📒</span><span class="evidence-text">نماذج الملاحظات الرسمية</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">🤝</span><span class="evidence-text">المشاركة في الجلسات الإرشادية</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">📈</span><span class="evidence-text">الخطط الفصلية وتحليل المحتوى</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">🏫</span><span class="evidence-text">تهيئة البيئة الصفية وتنظيمها</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">🎓</span><span class="evidence-text">الشهادات والدورات التدريبية</span></div>
+    <div class="evidence-item"><span class="evidence-emoji">🌱</span><span class="evidence-text">المبادرات والأنشطة المجتمعية</span></div>
+  </div>
+</div>
+<div class="footer-cta">
+  <h2>🌐 ملاحظة ختامية</h2>
+  <p>وبشكل عام، يمكن إرفاق أي دليل يدعم المعيار ويثبت تطبيقه وتحقيقه، شريطة أن يكون مرفقاً برابط تشعبي يمكن الوصول إليه.</p>
+</div>
+</div>
+</div>
+
+<!-- TOOL -->
+<div id="tool" class="page">
+<div class="container">
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--teal)"></span>أداة تقييم التطور المهني</div>
+  <p class="section-desc">صُممت استناداً إلى معايير المعلمين — في نهاية كل خبرة مدرسية يجب على كل معلم طالب إكمال هذه الأداة</p>
+  <div class="instructions-card">
+    <h3>⚙️ تعليمات الاستخدام</h3>
+    <div class="instruction-item"><div class="check-icon">✓</div><p>تساعد هذه الأداة المعلمين الطلبة على تقديم أدلة تؤكد تحقيقهم لمعايير المعلمين، حيث يُطلب تظليل المعيار المحقق مع تقديم الدليل.</p></div>
+    <div class="instruction-item"><div class="check-icon">✓</div><p>يمكن أن يكون الدليل وصفاً بسيطاً للعمل، أو رابط URL للوصول إلى العمل المقدم مع تحديد ما يوضح تحقيق المعيار.</p></div>
+    <div class="instruction-item"><div class="check-icon">✓</div><p>ظلّل معايير الخبرة الأولى باللون <strong style="color:#d97706">الأصفر</strong>، ومعايير الخبرة الثانية باللون <strong style="color:#1d4ed8">الأزرق</strong>.</p></div>
+    <div class="instruction-item"><div class="check-icon">✓</div><p>سيراجع المعلم الموجّه هذه الأداة في نهاية كل خبرة مدرسية، وسيناقشها مدرس المعلمين أثناء جلسات الدعم.</p></div>
+  </div>
+  <div class="alert-warning">
+    <span style="font-size:1.6rem">🔴</span>
+    <p>تنبيه: المطلوب حالياً هو تعبئة <strong>حقول الخبرة المدرسية الأولى فقط</strong>. لا تعبّئ حقول الخبرة الثانية في الوقت الراهن.</p>
+  </div>
+
+  <div class="std-header">📘 معيار المعلمين ١ — المعرفة المهنية</div>
+  <div style="overflow-x:auto">
+  <table class="std-table">
+    <thead><tr>
+      <th style="width:20%">المعيار الفرعي</th>
+      <th style="width:23%;background:#d1fae5;color:#14532d">مبتدئ</th>
+      <th style="width:23%;background:#fef3c7;color:#78350f">متمكن</th>
+      <th style="width:23%;background:#ede9fe;color:#4c1d95">خبير</th>
+      <th style="width:11%">دليل — الخبرة الأولى</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><strong>1.1 فهم المعرفة في المبحث</strong></td><td>تعكس الخطط بعض المعرفة بالمحتوى والفهم الأساسي مع محاولات قليلة للبناء على المعرفة السابقة.</td><td>توضح الخطط معرفة قوية بالمحتوى مع عدم القدرة على إجراء التكامل بين فروع المبحث.</td><td>توضح الخطط معرفة واسعة وفهماً عميقاً والقدرة على تعرف المفاهيم الخاطئة وعلاجها باستمرار.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>1.2 المعرفة بالمحتوى لإيجاد تجربة ملائمة</strong></td><td>المعرفة الضعيفة بالمحتوى يظهر أثرها في التخطيط والتدريس غير الدقيق.</td><td>المعرفة محدودة لكنها صحيحة ومرتبطة إلى حد ما بواقع الطلبة.</td><td>المعرفة العميقة والمدروسة تظهر في التخطيط والتدريس وتحقيق نتاجات مرتبطة بواقع الطلبة.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>3.1.1 إتقان اللغة العربية</strong></td><td>الكتابة واضحة والكلام مفهوم، المفردات صحيحة لكن غير مناسبة لأعمار الطلبة.</td><td>الكلام والكتابة واضحة وصحيحة، المفردات مناسبة لأعمار الطلبة وخلفياتهم.</td><td>اللغة واضحة ومعبرة طوال الحصة، مع مفردات تثري الدرس وتشجع الطلبة على التحدث.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.1 بيداغوجيا المحتوى (PCK)</strong></td><td>يعي خصائص المتعلمين وطرق التدريس مع استحضار التعلم السابق دون توظيفه.</td><td>استحضار التعلم السابق وتوظيفه واختيار التهيئة المناسبة واستخدام أساليب متنوعة.</td><td>مساعدة الطلبة على الربط بالحياة وإجراء تعديلات مستمرة تتناسب مع الموقف التعليمي.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.2.1 نظريات التعلم وارتباطها بالممارسة</strong></td><td>تقديم تعليمات واضحة وتحديد النظرية دون مناقشة آثارها.</td><td>توظيف التعلم النشط والتمييز بين النظريات والمشاركة في المناقشات.</td><td>تطبيق النظريات في المواقف المختلفة وتقديم التعزيز المستمر والتغذية الراجعة البنائية.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>3.2.1 مبادئ التعلم والتعليم القائم على الاستقصاء</strong></td><td>يوظف بعض الأساليب القائمة على الاستقصاء بشكل محدود.</td><td>يخطط لإجراءات تدعم التعلم ويوظف الاستقصاء كطرح الأسئلة.</td><td>يخطط وينفذ إجراءات تعلم تدعم الطلبة ويوجههم لاستخدام الاستقصاء وحل المشكلات باستمرار.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>1.3.1 الثقافة والتقاليد وأثرها في الممارسة</strong></td><td>يظهر وعياً بالثقافة والمواطنة دون مراعاة التنوع في سياق المدرسة.</td><td>إظهار تأثير الثقافة في التعليم ومراعاة التنوع بشكل جزئي في التخطيط والأنشطة.</td><td>إظهار تأثير الثقافة واحترام التنوع وتأصيله في جميع الممارسات التعليمية بشكل مستمر.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.3.1 خصائص المتعلم وبيئة التعلم</strong></td><td>إظهار الوعي بأهمية خصائص المتعلم مع مراعاة بعض الاحتياجات بشكل محدود.</td><td>توظيف بيئات تعلم مختلفة ومراعاة احتياجات المتعلم الاجتماعية والعاطفية أحياناً.</td><td>توظيف أنشطة تراعي صفات المتعلم في مواقف متنوعة ومراعاة جميع احتياجاته بشكل مستمر.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>3.3.1 الطلبة ذوو الاحتياجات الخاصة</strong></td><td>إقامة علاقات أو تواصل ثنائي مع الطلبة والحفاظ على سرية معلوماتهم.</td><td>إقامة علاقات فعالة وتصميم أنشطة مناسبة ودمجهم في عملية التعلم.</td><td>إشراك الزملاء والأسر في اتصال متعدد الاتجاه واستخدام استراتيجيات متنوعة تناسب احتياجاتهم.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.4.1 تخطيط المناهج وتقييمها وتصميمها</strong></td><td>إظهار وعي بمبادئ تخطيط المناهج وقدرة محدودة على النقد والتقييم.</td><td>تحليل المناهج وإظهار الترابط بين النتاجات ونقد المنهاج معظم الوقت.</td><td>تحليل المناهج ومراعاة التكامل والتتابع ونقد المنهاج بالاستناد إلى أسس بنائه مع مراعاة احتياجات الطلبة.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="std-header">📗 معيار المعلمين ٢ — الممارسة المهنية</div>
+  <div style="overflow-x:auto">
+  <table class="std-table">
+    <thead><tr>
+      <th style="width:20%">المعيار الفرعي</th>
+      <th style="width:23%;background:#d1fae5;color:#14532d">مبتدئ</th>
+      <th style="width:23%;background:#fef3c7;color:#78350f">متمكن</th>
+      <th style="width:23%;background:#ede9fe;color:#4c1d95">خبير</th>
+      <th style="width:11%">دليل — الخبرة الأولى</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><strong>2.1.2 استراتيجيات التعليم والتكنولوجيا</strong></td><td>اختيار مصادر تعليمية واستراتيجيات بالاستناد إلى احتياجات المتعلمين.</td><td>اختيار مصادر متنوعة وتوظيف بعض استراتيجيات التدريس الفاعلة (HITS) وتطبيقات تكنولوجية.</td><td>توظيف المصادر المتنوعة بكفاءة عالية وإجراء تعديلات وتوظيف HITS باستمرار.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>3.1.2 التخطيط لتلبية احتياجات الطلبة</strong></td><td>التخطيط لبعض مصادر التعلم وتوظيف التكنولوجيا بشكل محدود.</td><td>التخطيط لمصادر متنوعة تراعي التمايز وتوظيف وسائل التكنولوجيا لدعم التعلم.</td><td>التخطيط للتعليم المتمايز ومراعاة الاحتياجات وتضمين أهداف التنمية المستدامة.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.2.1 التواصل مع الطلبة وأصحاب العلاقة</strong></td><td>التعليمات غير واضحة بشكل كافٍ والعلاقة مع الطلبة غير مستقرة.</td><td>التعليمات واضحة والتواصل الفعال مع الطلبة وتقديم المعلومات لأصحاب العلاقة.</td><td>التعاون الواضح مع أصحاب العلاقة والحرص على إقامة علاقات متميزة مع الطلبة.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.2.2 خبرات التعلم المرتبطة بالأهداف</strong></td><td>الاعتماد على التدريس المباشر وعرض نتاجات التعلم.</td><td>مشاركة نتاجات التعلم وتوظيف أكثر من استراتيجية لضمان مشاركة الطلبة.</td><td>تقييم فاعلية الطرق وتعديلها وقت الحاجة وتعزيز تقدم الطلبة لضمان تعلم فعال.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.2.3 وضع توقعات عالية</strong></td><td>يظهر التخطيط توقعات متواضعة لإنجازات الطلبة.</td><td>يظهر التخطيط توقعات عالية وطرح الأسئلة لإثارة تفكير الطلبة.</td><td>توقعات عالية وأسئلة تتحدى تفكير الطلبة وتساعدهم على التطوير والخروج من منطقة الراحة.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.2.4 جمع الأدلة لتحسين التعلم</strong></td><td>جمع بيانات محددة باستخدام أدوات محدودة.</td><td>جمع بيانات حول احتياجات الطلبة بأدوات متنوعة ومحاولة تحسين التعلم.</td><td>جمع بيانات بانتظام من مصادر مختلفة واستخدامها لتعديل طرق التدريس بشكل منهجي.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>6.2.2 التكنولوجيا الرقمية</strong></td><td>توظيف الأدوات الرقمية في تصميم خبرة تعليمية.</td><td>توظيف الأدوات الرقمية بشكل فعال في تصميم خبرة التعلم لتعزيز تعلم الطلبة.</td><td>التوسع في استخدام الأدوات الرقمية لخبرات متنوعة وتعليم الطلبة الاستخدام الفعال.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.3.2 البيئة التعليمية الداعمة</strong></td><td>فرصة محدودة للتأمل وإدارة غير فعالة للوقت والتدريس المباشر محور العملية.</td><td>استخدام التقييم الذاتي وتقييم الأقران وإدارة الوقت بكفاءة وتخطيط التعلم النشط.</td><td>إعطاء الطلبة الوقت للتأمل وتعزيز المناقشات الأكاديمية باستمرار وإشراكهم في اتخاذ القرار.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>1.4.2 التقييم التكويني والختامي</strong></td><td>الحد الأدنى من التقييمات وتقديم ملاحظات حول تعلم الطلبة.</td><td>توظيف استراتيجيات التقييم من أجل التعلم وتوفير التغذية الراجعة المناسبة في وقتها.</td><td>استراتيجيات متكاملة وجمع البيانات بطرق متعددة وتغذية راجعة مستهدفة في الوقت المناسب.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>2.4.2 التعليم المتمايز</strong></td><td>يظهر التخطيط استراتيجيات التمايز في بعض الأحيان.</td><td>يظهر التخطيط استراتيجيات التمايز لتلبية احتياجات التعلم للطلبة.</td><td>التخطيط لاستراتيجيات التمايز وتوظيفها بشكل متمكن ومستمر لتلبية احتياجات جميع الطلبة.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="std-header">📙 معيار المعلمين ٣ — الأخلاقيات المهنية</div>
+  <div style="overflow-x:auto">
+  <table class="std-table">
+    <thead><tr>
+      <th style="width:20%">المعيار الفرعي</th>
+      <th style="width:23%;background:#d1fae5;color:#14532d">مبتدئ</th>
+      <th style="width:23%;background:#fef3c7;color:#78350f">متمكن</th>
+      <th style="width:23%;background:#ede9fe;color:#4c1d95">خبير</th>
+      <th style="width:11%">دليل — الخبرة الأولى</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><strong>1.1.3 العمل مع المجتمع المحلي</strong></td><td>عدم المشاركة أو المشاركة المحدودة في المشاريع إذا طُلب ذلك.</td><td>المشاركة في معظم النشاطات المدرسية ضمن إطار المدرسة.</td><td>المبادرة والتطوع للمشاركة في النشاطات وتقديم مساهمات تخدم المجتمع المدرسي.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>3.1.2 المسؤوليات والحقوق المهنية</strong></td><td>وعي بالمسؤوليات والحقوق بوصفه ممارساً للمهنة.</td><td>تنفيذ المسؤوليات بشكل جزئي مع فهم واضح للحقوق.</td><td>تنفيذ المسؤوليات بالكامل مع فهم واضح للحقوق بوصفه ممارساً محترفاً.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>1.3.4 استخدام الموارد بنزاهة</strong></td><td>توظيف الموارد المتاحة والاعتراف بالمصادر المستخدمة.</td><td>توظيف الموارد والحفاظ عليها والإشارة إلى المصادر وتعزيز هذا النهج.</td><td>استخدام الموارد بنزاهة واستدامتها وتعزيز هذا النهج عند الآخرين والتوثيق باحترافية عالية.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>3.1.6 العلاقة مع أصحاب العلاقة</strong></td><td>ممارسة السلوك المناسب واحترام خصوصية الطلبة والوعي بأهمية إنشاء العلاقة.</td><td>اتخاذ خطوات لوقف التمييز وإنشاء علاقة جيدة مع مجتمع المدرسة.</td><td>إظهار المهنية والسعي لإنهاء التمييز والتعاون مع الجميع لتقديم الدعم للطلبة باستمرار.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>3.2.1 التطوير الشخصي والمهني مدى الحياة</strong></td><td>تبادل المعرفة مع الآخرين بشكل محدود.</td><td>المشاركة في دورات التطوير وإجراء التقييم الذاتي والتعرف على نقاط القوة ومجالات التحسين.</td><td>إظهار المهنية باستمرار والسعي للتطوير المهني ووضع خطط التطوير الشخصي والمهني.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+      <tr><td><strong>3.2.2 البحث التربوي ومساهمته</strong></td><td>يظهر وعياً بأهمية البحوث التربوية ويوظفها في الأعمال الكتابية.</td><td>يربط بين الممارسات والبحوث التربوية ويتأمل ممارساته كمعلم مستقصٍ.</td><td>البحث المستمر عن البحوث التعليمية وتوظيفها بشكل منهجي وتحليل النتائج بالاستناد إلى الأدب التربوي.</td><td style="text-align:center;color:var(--muted);font-style:italic;font-size:.75rem">أضف رابطاً</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- FORM -->
+<div id="form" class="page">
+<div class="container">
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--purple)"></span>نموذج الجلسة الإرشادية البنائي</div>
+  <p class="section-desc">الخبرة المدرسية الأولى — يُعبَّأ هذا النموذج من قبل المعلم الطالب ويُناقش مع مدرّس المعلمين في جلسة الإرشاد</p>
+  <div class="instructions-card">
+    <h3>📋 تعليمات التعبئة</h3>
+    <div class="instruction-item"><div class="check-icon">١</div><p>رصد معيار فرعي من المعيار الرئيسي ورصد جوانب القوة في هذا المعيار.</p></div>
+    <div class="instruction-item"><div class="check-icon">٢</div><p>كتابة ملاحظات حول مستوى تقدمك نحو تحقيق معايير المعلمين بناءً على الأدلة من الخبرة المدرسية والملاحظات الرسمية والتغذية الراجعة من الصديق الناقد ومدرّس المعلمين وأداة التقييم الذاتي.</p></div>
+    <div class="instruction-item"><div class="check-icon">٣</div><p>رصد الأهداف المستقبلية للخبرة القادمة.</p></div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-section-header">١.٠ المعرفة المتخصصة &nbsp;|&nbsp; ١.١ المعرفة بالمبحث &nbsp;|&nbsp; ١.٢ المعرفة بالمحتوى التربوي &nbsp;|&nbsp; ١.٣ المعرفة بالسياق &nbsp;|&nbsp; ١.٤ المعرفة بالمنهاج</div>
+    <div class="form-section-body">
+      <div class="form-field"><label>جوانب القوة: (اكتب جملتين على الأقل حول نقاط القوة ضمن هذا المعيار)</label><textarea placeholder="اكتب هنا جوانب القوة..."></textarea></div>
+      <div class="form-field"><label>جوانب التطور: (اكتب هدفاً أو هدفين للتطور ضمن هذا المعيار)</label><textarea placeholder="اكتب هنا أهداف التطور..."></textarea></div>
+      <div class="form-field">
+        <label>تقرير مدرس المعلمين — مستوى تقدم المعلم الطالب:</label>
+        <div class="progress-radio">
+          <div class="radio-btn"><input type="radio" name="p1" id="p1a"><label for="p1a" class="radio-slow">🔴 بطيء</label></div>
+          <div class="radio-btn"><input type="radio" name="p1" id="p1b"><label for="p1b" class="radio-steady">🟠 ثابت</label></div>
+          <div class="radio-btn"><input type="radio" name="p1" id="p1c"><label for="p1c" class="radio-good">🟢 جيد</label></div>
+          <div class="radio-btn"><input type="radio" name="p1" id="p1d"><label for="p1d" class="radio-excel">🔵 متميز</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-section-header">٢.٠ الممارسات المهنية &nbsp;|&nbsp; ٢.١ التخطيط &nbsp;|&nbsp; ٢.٢ عملية التعلم وأساليب التدريس &nbsp;|&nbsp; ٢.٣ بيئة التعلم &nbsp;|&nbsp; ٢.٤ التقويم</div>
+    <div class="form-section-body">
+      <div class="form-field"><label>نقاط القوة: (اكتب جملتين على الأقل)</label><textarea placeholder="اكتب هنا نقاط القوة..."></textarea></div>
+      <div class="form-field"><label>جوانب التطور: (اكتب هدفاً أو هدفين)</label><textarea placeholder="اكتب هنا أهداف التطور..."></textarea></div>
+      <div class="form-field">
+        <label>تقرير مدرس المعلمين — مستوى تقدم المعلم الطالب:</label>
+        <div class="progress-radio">
+          <div class="radio-btn"><input type="radio" name="p2" id="p2a"><label for="p2a" class="radio-slow">🔴 بطيء</label></div>
+          <div class="radio-btn"><input type="radio" name="p2" id="p2b"><label for="p2b" class="radio-steady">🟠 ثابت</label></div>
+          <div class="radio-btn"><input type="radio" name="p2" id="p2c"><label for="p2c" class="radio-good">🟢 جيد</label></div>
+          <div class="radio-btn"><input type="radio" name="p2" id="p2d"><label for="p2d" class="radio-excel">🔵 متميز</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-section-header">٣.٠ الأخلاقيات المهنية &nbsp;|&nbsp; ٣.١ المعلمون ككوادر مهنية &nbsp;|&nbsp; ٣.٢ التطور المهني</div>
+    <div class="form-section-body">
+      <div class="form-field"><label>نقاط القوة: (اكتب جملتين على الأقل)</label><textarea placeholder="اكتب هنا نقاط القوة..."></textarea></div>
+      <div class="form-field"><label>جوانب التطور: (اكتب هدفاً أو هدفين)</label><textarea placeholder="اكتب هنا أهداف التطور..."></textarea></div>
+      <div class="form-field">
+        <label>تقرير مدرس المعلمين — مستوى تقدم المعلم الطالب:</label>
+        <div class="progress-radio">
+          <div class="radio-btn"><input type="radio" name="p3" id="p3a"><label for="p3a" class="radio-slow">🔴 بطيء</label></div>
+          <div class="radio-btn"><input type="radio" name="p3" id="p3b"><label for="p3b" class="radio-steady">🟠 ثابت</label></div>
+          <div class="radio-btn"><input type="radio" name="p3" id="p3c"><label for="p3c" class="radio-good">🟢 جيد</label></div>
+          <div class="radio-btn"><input type="radio" name="p3" id="p3d"><label for="p3d" class="radio-excel">🔵 متميز</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-section-header">ملخص جلسة الإرشاد ونقاط العمل</div>
+    <div class="form-section-body">
+      <div class="form-field"><label>الموضوعات التي تم طرحها في النقاش:</label><textarea placeholder="اكتب هنا قائمة بالموضوعات التي نوقشت..." style="min-height:90px"></textarea></div>
+      <div class="form-field"><label>نقاط العمل للمعلم الطالب: (الإجراءات التي ستتخذها المرتبطة بأهدافك)</label><textarea placeholder="اكتب هنا نقاط العمل..." style="min-height:90px"></textarea></div>
+      <div class="form-field">
+        <label>التقدم الكلي المحقق — تقييم مدرس المعلمين:</label>
+        <div class="progress-radio">
+          <div class="radio-btn"><input type="radio" name="ov" id="oa"><label for="oa" style="color:#b91c1c;font-weight:600">🔴 بطيء</label></div>
+          <div class="radio-btn"><input type="radio" name="ov" id="ob"><label for="ob" style="color:#c2410c;font-weight:600">🟠 ثابت</label></div>
+          <div class="radio-btn"><input type="radio" name="ov" id="oc"><label for="oc" style="color:#15803d;font-weight:600">🟢 جيد / متميز</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- CHECKLIST -->
+<div id="checklist" class="page">
+<div class="container">
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--green)"></span>قائمة التحقق قبل التسليم</div>
+  <p class="section-desc">تأكد من إتمام جميع البنود أدناه قبل رفع المهمة على المنصة</p>
+
+  <div class="checklist-card">
+    <h3>📊 أداة تقييم التطور المهني</h3>
+    <div class="checklist-item" id="ci1"><input type="checkbox" id="c1" onchange="toggleDone('ci1')"><label for="c1">عبّأت جميع معايير الأداة (المعيار ١ و٢ و٣) دون استثناء</label></div>
+    <div class="checklist-item" id="ci2"><input type="checkbox" id="c2" onchange="toggleDone('ci2')"><label for="c2">ظللت معايير الخبرة الأولى باللون الأصفر كما هو مطلوب</label></div>
+    <div class="checklist-item" id="ci3"><input type="checkbox" id="c3" onchange="toggleDone('ci3')"><label for="c3">أرفقت الأدلة عبر روابط تشعبية (Hyperlinks) قابلة للوصول</label></div>
+    <div class="checklist-item" id="ci4"><input type="checkbox" id="c4" onchange="toggleDone('ci4')"><label for="c4">تأكدت أن كل دليل يدعم مستوى الأداء المختار بوضوح</label></div>
+    <div class="checklist-item" id="ci5"><input type="checkbox" id="c5" onchange="toggleDone('ci5')"><label for="c5">لم يتجاوز استخدام أي دليل واحد أكثر من ثلاثة معايير</label></div>
+  </div>
+
+  <div class="checklist-card">
+    <h3>📝 نموذج الجلسة الإرشادية</h3>
+    <div class="checklist-item" id="ci6"><input type="checkbox" id="c6" onchange="toggleDone('ci6')"><label for="c6">عبّأت قسم المعرفة المتخصصة (١.٠) بجوانب القوة والتطور</label></div>
+    <div class="checklist-item" id="ci7"><input type="checkbox" id="c7" onchange="toggleDone('ci7')"><label for="c7">عبّأت قسم الممارسات المهنية (٢.٠) بجوانب القوة والتطور</label></div>
+    <div class="checklist-item" id="ci8"><input type="checkbox" id="c8" onchange="toggleDone('ci8')"><label for="c8">عبّأت قسم الأخلاقيات المهنية (٣.٠) بجوانب القوة والتطور</label></div>
+    <div class="checklist-item" id="ci9"><input type="checkbox" id="c9" onchange="toggleDone('ci9')"><label for="c9">أكملت ملخص جلسة الإرشاد ونقاط العمل</label></div>
+  </div>
+
+  <div class="checklist-card">
+    <h3>🚀 التسليم النهائي</h3>
+    <div class="checklist-item" id="ci10"><input type="checkbox" id="c10" onchange="toggleDone('ci10')"><label for="c10">تحققت من أن جميع الروابط تعمل بشكل صحيح قبل التسليم</label></div>
+    <div class="checklist-item" id="ci11"><input type="checkbox" id="c11" onchange="toggleDone('ci11')"><label for="c11">رفعت المهمة كاملة على المنصة قبل السبت 6 يونيو 2026</label></div>
+  </div>
+
+  <div id="done-msg" style="display:none;background:linear-gradient(135deg,#0f766e,#15803d);color:#fff;border-radius:var(--radius);padding:28px;text-align:center;margin-bottom:28px;">
+    <div style="font-size:2.5rem;margin-bottom:10px">🎉</div>
+    <div style="font-size:1.15rem;font-weight:800;">أحسنت! أتممت جميع بنود قائمة التحقق</div>
+    <div style="font-size:.88rem;color:#a7f3d0;margin-top:8px;">مهمتك جاهزة للتسليم — متمنين لك التوفيق والنجاح</div>
+  </div>
+
+  <div class="footer-cta">
+    <h2>🌟 شاكرين لكم تعاونكم</h2>
+    <p>وبشكل عام، يمكن إرفاق أي دليل يدعم المعيار ويثبت تطبيقه وتحقيقه، شريطة أن يكون مرفقاً برابط تشعبي يمكن الوصول إليه.<br><br>متمنين لكم التوفيق والنجاح 💛</p>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const map={cover:0,guide:1,tool:2,form:3,checklist:4};
+  document.querySelectorAll('.nav-tab')[map[id]].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleDone(id){
+  const item=document.getElementById(id);
+  const cb=item.querySelector('input[type="checkbox"]');
+  item.classList.toggle('done',cb.checked);
+  const all=document.querySelectorAll('.checklist-item input[type="checkbox"]');
+  document.getElementById('done-msg').style.display=[...all].every(c=>c.checked)?'block':'none';
+}
+</script>
+</body>
+</html>
